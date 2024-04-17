@@ -11,6 +11,7 @@ import Whishlist from "../Private/Customer/Wishlist.jsx";
 import Explore from "../Private/Customer/Explore.jsx";
 import AddAddress from "../Private/Common/AddAdress.jsx";
 import EditProfile from "../Private/Common/EditProfile.jsx";
+import Orders from "../Private/Seller/Orders.jsx";
 const AllRoutes = () => {
   const user = {
     userId: "1",
@@ -34,7 +35,8 @@ const AllRoutes = () => {
             key={"addproduct"}
             path="/addproduct"
             element={<AddProduct />}
-          />
+          />,
+          <Route key={"orders"} path="/orders" element={<Orders />} />
         )
       : role == "CUSTOMER" &&
         routes.push(
@@ -57,7 +59,16 @@ const AllRoutes = () => {
         <Route key={"home"} path="/" element={<Home />} />,
         <Route key={"login"} path="/login" element={<Login />} />,
         <Route key={"explore"} path="/explore" element={<Explore />} />,
-        <Route key={"register"} path="/register" element={<Register />} />
+        <Route
+          key={"register"}
+          path="/register-customer"
+          element={<Register role={"CUSTOMER"} />}
+        />,
+        <Route
+          key={"registerseller"}
+          path="/register-seller"
+          element={<Register role={"SELLER"} />}
+        />
       );
   }
   return (
